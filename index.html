@@ -24,39 +24,43 @@
 </head>
 <body>
 
-<main>
+<main class="antialiased sm:grid sm:place-items-center sm:h-screen">
   <h1 class="sr-only">Your result summary</h1>
-  <section>
-       <div>
-      <div>
-        <h2>Your Result</h2>
-        <div>
-          <div>76</div>
-          <div>of 100</div>
-        </div>
-      </div>
+  <div class="sm:mx-auto lg:px-12">
+    <section class="grid gap-5 sm:grid-cols-2 sm:gap-0 sm:rounded-[2rem] sm:shadow-xl sm:max-w-2xl">
+         <section class="grid place-items-center gap-5 bg-gradient-to-b from-gradient-slate-blue to-gradient-royal-blue pt-5 px-6 pb-10 rounded-b-[2rem] sm:rounded-t-[2rem] md:gap-8 md:pt-10 md:pb-12">
+           <h2 class="text-lg font-bold text-neutral-pale-lavender md:text-[1.375rem]">Your Result</h2>
+           <div class="mx-auto w-36 h-36 grid place-items-center gap-2 rounded-full p-6 bg-gradient-to-b from-gradient-violet-blue to-gradient-persian-blue md:w-48 md:h-48 md:p-12">
+             <div class="text-[3.5rem] pt-2 leading-none font-extrabold text-neutral-white md:text-[4.2rem] md:leading-none">76</div>
+             <div class="text-neutral-pale-lavender/80 md:font-bold md:text-lg">of 100</div>
+           </div>
 
-      <p>Great</p>
-      <p>You scored higher than 65% of the people who have taken these tests.</p>
-    </div>
+           <div class="px-6 text-center space-y-2 sm:px-8 md:space-y-4">
+             <p class="text-2xl font-bold text-neutral-white md:text-3xl">Great</p>
+             <p class="text-neutral-pale-lavender leading-snug md:leading-tight">You scored higher than 65% of the people who have taken these tests.</p>
+           </div>
+         </section>
 
-    <h3>Summary</h3>
+      <section class="px-8 sm:py-5">
+        <h3 class="font-bold text-lg md:text-[1.375rem]">Summary</h3>
+        <ul x-data="data()" class="my-6 space-y-4">
+          <template x-for="result in results">
+            <li class="rounded-lg flex flex-wrap items-center justify-between px-3.5 py-4" :class="result.bgColor">
+              <div class="inline-flex gap-3 items-center">
+                <img :src="result.icon" alt="">
+                <p :class="result.textColor" x-text="result.category"></p>
+              </div>
+              <div class="space-x-2">
+                <span x-text="result.score"></span><span class="text-neutral-gray-blue/50">/ 100</span>
+              </div>
+            </li>
+          </template>
+        </ul>
+        <button class="w-full rounded-full p-3.5 text-center bg-neutral-gray-blue text-neutral-white font-bold text-lg hover:bg-gradient-to-b hover:from-gradient-slate-blue hover:to-gradient-royal-blue">Continue</button>
+      </section>
 
-    <ul x-data="data()">
-      <template x-for="result in results">
-        <li>
-          <h2>
-            <img :src="result.icon" alt="">
-            <span x-text="result.category"></span>
-          </h2>
-          <div>
-            <span x-text="result.score"></span><span> / 100</span>
-          </div>
-        </li>
-      </template>
-    </ul>
-     <button>Continue</button>
-  </section>
+    </section>
+  </div>
 </main>
 
 <footer class="fixed bottom-0 inset-x-0 text-center text-xs bg-white/80 py-1 opacity-0 translate-y-2 hover:opacity-100 hover:translate-y-0 transform transition ease-in-out duration-150">
